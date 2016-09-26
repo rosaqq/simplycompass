@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+
 package net.secknv.scomp;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -32,10 +33,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.secknv.scomp.block.SCBlocks;
 import net.secknv.scomp.handler.ConfigHandler;
 import net.secknv.scomp.item.SCItems;
-import net.secknv.scomp.proxy.CommonProxy;
+import net.secknv.scomp.proxy.IProxy;
 import net.secknv.scomp.recipes.RecipesCrafting;
 import net.secknv.scomp.reference.Reference;
-import net.secknv.scomp.tileentity.SCTileEntities;
 import net.secknv.scomp.util.LogHelper;
 
 
@@ -46,7 +46,7 @@ public class SimplyCompass{
     public static SimplyCompass instance;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-    public static CommonProxy proxy;
+    public static IProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
@@ -62,7 +62,6 @@ public class SimplyCompass{
     public void init(FMLInitializationEvent event){
 
         proxy.registerRenders();
-        SCTileEntities.register();
         RecipesCrafting.registerRecipes();
         LogHelper.warn("init finished");
     }

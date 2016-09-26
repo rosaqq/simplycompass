@@ -23,14 +23,9 @@
  */
 
 
-package net.secknv.scomp.reference;
+package net.secknv.scomp.proxy;
 
-public class Reference {
+public interface IProxy {
 
-    public static final String MOD_ID = "scomp";
-    public static final String MOD_NAME = "SimplyCompass";
-    public static final String VERSION = "0.0.1.0";
-    public static final String CLIENT_PROXY_CLASS = "net.secknv.scomp.proxy.ClientProxy";
-    public static final String SERVER_PROXY_CLASS = "net.secknv.scomp.proxy.ServerProxy";
-    public static final String GUI_FACTORY_CLASS = "net.secknv.scomp.gui.GuiFactory";
+    void registerRenders();
 }

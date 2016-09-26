@@ -21,6 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+
 package net.secknv.scomp.item;
 
 import net.minecraft.client.Minecraft;
@@ -37,7 +39,7 @@ public class SCItems {
 
     public static void register() {
 
-        NkCompassOverride.asdf();
+        SCCompassOverride.override();
         registerItem(RESONANT_COMPASS);
     }
 

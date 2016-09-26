@@ -11,12 +11,13 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.secknv.scomp.util.LogHelper;
 
 import javax.annotation.Nullable;
 
-public class NkCompassOverride {
+public class SCCompassOverride {
 
-    public static void asdf() {
+    public static void override() {
 
         Items.COMPASS.addPropertyOverride(new ResourceLocation("angle"), new IItemPropertyGetter() {
 
@@ -28,6 +29,7 @@ public class NkCompassOverride {
             long lastUpdateTick;
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+
 
                 if (entityIn == null && !stack.isOnItemFrame()) {
 
