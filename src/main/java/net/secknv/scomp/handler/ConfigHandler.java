@@ -36,7 +36,7 @@ import java.io.File;
 public class ConfigHandler {
 
 	public static Configuration config;
-    public static int coilRadius = 3;
+    public static int wow = 0;
 
 
 	public static void init(File configFile) {
@@ -57,7 +57,7 @@ public class ConfigHandler {
 
     private static void loadConfiguration() {
 
-        coilRadius = config.getInt("Coil Influence Radius", Configuration.CATEGORY_GENERAL, 3, 0, 100, "Set the radius of the coils' influence on the compass.");
+        wow = config.getInt("wow such config", Configuration.CATEGORY_GENERAL, 0, 0, 100, "many option");
 
         if(config.hasChanged()) {
             config.save();

@@ -43,7 +43,7 @@ import net.secknv.scomp.reference.Reference;
 public class BlockCoil extends Block {
 	
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
-	public static final PropertyBool ENABLED = PropertyBool.create("enabled");
+	public static final PropertyBool REDENABLED = PropertyBool.create("enabled");
     private final String name = "coil";
 
     public BlockCoil() {
@@ -58,7 +58,7 @@ public class BlockCoil extends Block {
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
         int powered = world.isBlockIndirectlyGettingPowered(pos);
-        world.setBlockState(pos, state.withProperty(ENABLED, powered > 0), 3);
+        world.setBlockState(pos, state.withProperty(REDENABLED, powered > 0), 3);
     }
 	
     @Override
@@ -88,16 +88,16 @@ public class BlockCoil extends Block {
     public IBlockState getStateFromMeta(int meta) {
     	return getDefaultState()
                 .withProperty(FACING, EnumFacing.getFront(meta & 7))
-                .withProperty(ENABLED, (meta & 8) != 0);
+                .withProperty(REDENABLED, (meta & 8) != 0);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex() + (state.getValue(ENABLED) ? 8 : 0);
+        return state.getValue(FACING).getIndex() + (state.getValue(REDENABLED) ? 8 : 0);
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, ENABLED);
+        return new BlockStateContainer(this, FACING, REDENABLED);
     }
 }

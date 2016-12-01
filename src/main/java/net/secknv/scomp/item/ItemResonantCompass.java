@@ -95,8 +95,14 @@ public class ItemResonantCompass extends Item {
 
                     if (!(stack.getTagCompound() == null)) {
                         if(stack.getTagCompound().hasKey("pos")) {
+
                             BlockPos blockpos = NBTUtil.getPosFromTag(stack.getTagCompound().getCompoundTag("pos"));
-                            if(worldIn.getBlockState(blockpos).getValue(BlockCoil.ENABLED)) {
+
+                            if(worldIn.getBlockState(blockpos).getBlock() instanceof BlockCoil) {
+                                boolean redValue = worldIn.getBlockState(blockpos).getValue(BlockCoil.REDENABLED);
+                                stack.getTagCompound().setBoolean("redValue", redValue);
+                            }
+                            if(stack.getTagCompound().getBoolean("redValue")) {
                                 double d2 = (Math.atan2((double) blockpos.getZ() - entity.posZ, (double) blockpos.getX() - entity.posX)) / (Math.PI * 2D);
                                 d0 = 0.5D - ((d1 - 0.25D) - d2);
                             }
@@ -145,13 +151,15 @@ public class ItemResonantCompass extends Item {
         if (!(stack.getTagCompound() == null)) {
             if(stack.getTagCompound().hasKey("pos")) {
                 BlockPos asd = NBTUtil.getPosFromTag(stack.getTagCompound().getCompoundTag("pos"));
+                Boolean value = stack.getTagCompound().getBoolean("redValue");
                 tooltip.add("Resonating with coil at x:" + asd.getX() + " y:" + asd.getY() + " z:" + asd.getZ());
-                tooltip.add(playerIn.worldObj.getBlockState(asd).getValue(BlockCoil.ENABLED) ? "Coil Enabled" : "Coil Disabled");
+                tooltip.add(value ? "Coil Enabled" : "Coil Disabled");
             }
         }
     }
 
 
+    //not affected here
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 

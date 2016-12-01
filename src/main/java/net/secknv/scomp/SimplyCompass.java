@@ -55,15 +55,20 @@ public class SimplyCompass{
         MinecraftForge.EVENT_BUS.register(new ConfigHandler());
 
         SCItems.register();
+        LogHelper.debug("Registered Items");
         SCBlocks.register();
+        LogHelper.debug("Registered Blocks");
+
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
 
         proxy.registerRenders();
+        LogHelper.debug("Registered Renders");
         RecipesCrafting.registerRecipes();
-        LogHelper.warn("init finished");
+        LogHelper.debug("Registered Recipes");
+
     }
 
     @Mod.EventHandler
